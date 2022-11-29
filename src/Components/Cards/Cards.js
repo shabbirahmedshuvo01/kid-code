@@ -20,7 +20,7 @@ const Cards = () => {
     return (
         <div className='m-20'>
 
-            <h1 className='text-4xl text-primary my-10 underline underline-offset-8'>My Classes</h1>
+            <h1 className='text-4xl text-primary my-10 underline underline-offset-8'>1:1 PROGRAMS</h1>
 
             <div className='grid grid-cols-3 gap-y-20 justify-center items-center pl-20'>
                 {
