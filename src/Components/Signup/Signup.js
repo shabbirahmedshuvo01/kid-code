@@ -1,18 +1,35 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Signup = () => {
+
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
 
     const nameRef = useRef('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
 
-    const handleSignUp = () => {
-         const name = nameRef.current.value;
-         const email = emailRef.current.value;
-         const password = passwordRef.current.value;
+    const navigate = useNavigate();
 
-         console.log(name,email,password);
+
+    if (user) {
+        navigate('/');
+    }
+
+    const handleSignUp = () => {
+        const name = nameRef.current.value;
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+
+        console.log(name, email, password);
+        createUserWithEmailAndPassword(email, password);
     }
 
     return (

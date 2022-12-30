@@ -1,7 +1,17 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
+
+    const [user] = useAuthState(auth);
+
+    const handleSingOut = () => {
+        signOut(auth);
+    }
+
     return (
         <div>
             <div class="navbar bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">
@@ -14,7 +24,11 @@ const Navbar = () => {
                     <ul class="menu menu-horizontal p-0 text-white">
                         <li><Link to="/">How It Works</Link></li>
                         <li><Link to="/">PROGRAMS</Link></li>
-                        <li><Link to="/login">LOGIN</Link></li>
+                        {user ?
+                        <Link onClick={handleSingOut}>Sign Out</Link>
+                        :
+                        <Link className='mt-3' to={'/login'}>Login</Link>
+                        }
                         <li><Link to="/signup">REGISTER</Link></li>
                     </ul>
                 </div>
