@@ -1,15 +1,18 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Signup = () => {
 
+    const nameRef = useRef('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
 
-    const handlelogin = () => {
-        const email = emailRef.current.value;
-        const password = passwordRef.current.value;
-        console.log(email || 0, password || 0)
+    const handleSignUp = () => {
+         const name = nameRef.current.value;
+         const email = emailRef.current.value;
+         const password = passwordRef.current.value;
+
+         console.log(name,email,password);
     }
 
     return (
@@ -22,10 +25,16 @@ const Login = () => {
                         <div className='flex flex-col justify-center items-center'>
                             <img className='w-28 mt-5' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU" alt="" />
 
-                            <h1 className='text-3xl font-bold pt-5'>Login</h1>
+                            <h1 className='text-3xl font-bold pt-5'>Sign up</h1>
                         </div>
 
                         <div class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Your Name</span>
+                                </label>
+                                <input type="text" required ref={nameRef} placeholder="Your Name" class="input input-bordered" />
+                            </div>
                             <div class="form-control">
                                 <label class="label">
                                     <span class="label-text">Email</span>
@@ -37,16 +46,13 @@ const Login = () => {
                                     <span class="label-text">Password</span>
                                 </label>
                                 <input type="password" required ref={passwordRef} placeholder="password" class="input input-bordered" />
-                                <label class="label">
-                                    <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
                             </div>
                             <div class="form-control mt-3">
-                                <button onClick={() => handlelogin()} class="btn btn-primary">Login</button>
+                                <button onClick={() => handleSignUp()} class="btn btn-primary">Login</button>
                             </div>
 
                             <div>
-                                <p>Don't have an account? <span className='text-primary hover:link'><Link to='/signup'>Sign up</Link></span></p>
+                                <p>Already have an account? <span className='text-primary hover:link'><Link to='/login'>Log In</Link></span></p>
                             </div>
 
                         </div>
@@ -58,4 +64,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;
